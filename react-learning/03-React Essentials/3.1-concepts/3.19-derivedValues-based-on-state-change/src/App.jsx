@@ -14,10 +14,10 @@ import { EXAMPLES } from "./data";
 
 function App() {
 
-  const [selectedTopic, setSelectedButton] = useState('components')
+  const [selectedTopic, setSelectedTopic] = useState('components')
 
-  function handleSelect(selectedTopic) {
-      setSelectedButton(selectedTopic);
+  function handleSelect(selectedButton) {
+      setSelectedTopic(selectedButton);
   }
 
   return (
