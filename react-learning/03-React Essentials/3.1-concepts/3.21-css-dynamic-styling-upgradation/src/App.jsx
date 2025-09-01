@@ -6,6 +6,7 @@
  *
  *   Example: We want to highlight (visual indicator) the tab button clicked. Side up-gradation: We want to update the CoreConcepts as dynamic list.
  *
+ *   Note: We will get an error if we don't add 'key' attribute as it will be used by React. Key needs to be unique for each entry.
  */
 import Header from "./components/Header";
 import CoreConcept from "./components/CoreConcept";
