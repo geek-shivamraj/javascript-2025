@@ -1,6 +1,6 @@
 /**
  *
- * In React, the Component (App.jsx) is a just a JavaScript Function below 2 rules:<br>
+ * In React, the Component (App_old.jsx) is a just a JavaScript Function below 2 rules:<br>
  *      1. Name starts with uppercase character
  *          - The function name must start with an uppercase character to let React know that this is a Custom Component.
  *          - Multi-word names should be written in PascalCase (e.g., MyHeader)
