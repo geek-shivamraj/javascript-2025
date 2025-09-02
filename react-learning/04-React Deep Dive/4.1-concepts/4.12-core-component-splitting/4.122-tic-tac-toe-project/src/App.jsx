@@ -19,11 +19,22 @@
  *
  *  Example: We've added <header> component with image in index.html
  *
+ *  Let's get started with Component Splitting i.e., we will have here Player, GameBoard & Log building blocks.
+ *
+ *      Step 1: Create a Player component
+ *      Step 2: Handle the button & its associated state. -> Refer 4.13-working with state
  */
-
+import Player from "./components/Player.jsx";
 
 function App() {
-    return null;
+    return <main>
+        <div id="game-container">
+            <ol id="players">
+                <Player playerName="Player 1" playerSymbol="X"/>
+                <Player playerName="Player 2" playerSymbol="O"/>
+            </ol>
+        </div>
+    </main>;
 }
 
 export default App
