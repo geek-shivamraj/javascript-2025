@@ -1,10 +1,7 @@
 /**
  *
- *  Concept in this project: Best Practice: Lifting State Up
- *    - Instead of managing which player is currently active in the GameBoard or Player component,
- *      we should manage the state in the closest ancestor component that has access to both components.
- *
- * i.e., in our case App.jsx becoz the App component can then pass the information about the active player to both components via props.
+ *  Concept in this project:
+ *    - Avoid Intersecting State & Prefer Computed Value and avoid unnecessary state management.
  *
  */
 import Player from "./components/Player.jsx";
@@ -12,18 +9,26 @@ import GameBoard from "./components/GameBoard.jsx";
 import { useState } from "react";
 import Log from "./components/Log.jsx";
 
+function deriveActivePlayer(gameTurns) {
+    let currentPlayer = 'X';
+    if(gameTurns.length > 0 && gameTurns[0].player === 'X') {
+        currentPlayer = 'O';
+    }
+    return currentPlayer;
+}
+
 function App() {
-    const [activePlayer, setActivePlayer] = useState('X');
+    //const [activePlayer, setActivePlayer] = useState('X');
     const [gameTurns, setGameTurns] = useState([]);
 
+    // Here we pass current "gameTurns" state.
+    const activePlayer = deriveActivePlayer(gameTurns);
+
     function handleSelectSquare(rowIndex, columnIndex) {
-        setActivePlayer((currentActivePlayer) => currentActivePlayer === 'X' ? 'O' : 'X');
+        //setActivePlayer((currentActivePlayer) => currentActivePlayer === 'X' ? 'O' : 'X');
         setGameTurns((prevTurns) => {
-            // Used this approach & didn't use activePlayer state as it's not recommended to merge different states.
-            let currentPlayer = 'X';
-            if(prevTurns.length > 0 && prevTurns[0].player === 'X') {
-                currentPlayer = 'O';
-            }
+            // Here we pass "prevTurns"
+            const currentPlayer = deriveActivePlayer(prevTurns);
             const updatedTurns = [
                 {square: {row: rowIndex, col: columnIndex}, player: currentPlayer},
                 ...prevTurns];
