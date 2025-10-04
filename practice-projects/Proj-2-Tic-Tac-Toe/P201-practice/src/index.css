@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Roboto+Slab:wght@400;700&display=swap');
+
+/* Task 0 */
+* {
+  box-sizing: border-box;
+}
+
+/* Task 0 */
+html {
+  font-family: 'Roboto Slab', sans-serif;
+  line-height: 1.5;
+
+  color: #ebe7ef;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Task 0 */
+body {
+    background: radial-gradient(
+            circle at top,
+            rgba(241, 210, 70, 0.98),
+            rgba(250, 176, 103, 0.87)
+    ), url('/bg-pattern-dark.png');
+    background-repeat: repeat;
+    background-size: 100% 100%, 30% 30%, 100% 100%;
+    min-height: 110rem;
+}
+
+/* Task 1 */
+header {
+    text-align: center;
+}
+
+/* Task 1 */
+header img {
+    width: 8rem;
+    object-fit: contain;
+    margin: 3rem auto 1rem auto;
+    filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.4));
+}
+
+/* Task 1 */
+h1 {
+    font-family: 'Caprasimo', cursive;
+    font-size: 3rem;
+    margin: 0 auto 3rem auto;
+    color: #3f3b00;
+}
+
+/* Task 2 */
+#game-container {
+    max-width: 45rem;
+    margin: 3rem auto;
+    padding: 2rem;
+    border-radius: 6px;
+    background: linear-gradient(#383624, #282617);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+/* Task 2 */
+#players {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+/* Task 2 */
+#players li {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    border: 2px solid transparent;
+}
+
+/* Task 2 */
+.player {
+    border: 2px solid transparent;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Task 2 */
+.player-name {
+    display: inline-block;
+    width: 10rem;
+    font-size: 1rem;
+    color: #e1dec7;
+    text-transform: uppercase;
+    margin: 0;
+    padding: 0.5rem;
+    border-radius: 4px;
+    text-overflow: ellipsis;
+    text-align: center;
+}
+
+/* Task 3 */
+.player input {
+    font: inherit;
+    font-size: 1rem;
+    width: 10rem;
+    border: none;
+    padding: 0.5rem;
+    animation: pulse-text 2s infinite;
+    background-color: #46432f;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+/* Task 2 */
+.player-symbol {
+    margin-left: 1rem;
+    font-size: 1rem;
+    color: #e1dec7;
+}
+
+/* Task 2 */
+#players button {
+    width: 3rem;
+    border: none;
+    background: none;
+    color: #c3ba78;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0.5rem 0.25rem 0.25rem 0.25rem;
+    text-align: center;
+}
+
+/* Task 2 */
+#players button:hover {
+    color: #f8ca31;
+}
