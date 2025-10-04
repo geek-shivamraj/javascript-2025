@@ -20,8 +20,15 @@
 - #### Component function can accept only one "prop" parameter & "prop" will be set by React becoz only React will execute this function.
 - #### **Task 4:** Read data.js & pass the prop to created CoreConcept component, each having different title, description & image. Also style the CoreConcepts & all tags
 
+---
 
 ![Image 2](./00-target-project/image2.png)
+### Step 5: Component Composition
+- #### Component Composition is a way of building Components where our components can wrap other Components/Contents.
+- #### The "children" prop contains whatever content b/w our Component tag & this content can be text or some complex JSX structure if needed.
+- #### Task 5: Add new section "examples" with `<h2>, <p> & <menu>` tag. Create a TabButton component with "children" prop & create 4 instances of TabButton having values/content as Component, JSX, Props, State. Style them too.
+
+---
 
 ![Image 3](./00-target-project/image3.png)
 

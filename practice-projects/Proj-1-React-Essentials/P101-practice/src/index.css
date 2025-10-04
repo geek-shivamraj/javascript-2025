@@ -1,6 +1,11 @@
 @import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Roboto+Condensed:wght@400;700&display=swap");
 
 /* Task 0 */
+* {
+    box-sizing: border-box;
+}
+
+/* Task 0 */
 html {
 
   font-family: "Quicksand", sans-serif;
@@ -56,20 +61,20 @@ main {
   margin: auto;
 }
 
+/* Task 5 */
+main h2 {
+    margin: 0 0 1.5rem 0;
+    color: #a18aba;
+    text-align: center;
+    font-family: "Roboto Condensed", sans-serif;
+}
+
 /* Task 4 */
 #core-concepts {
     background-color: #140524;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
     padding: 2rem;
     border-radius: 6px;
-}
-
-/* Task 4 */
-#core-concepts h2 {
-    margin: 0 0 1.5rem 0;
-    color: #a18aba;
-    text-align: center;
-    font-family: "Roboto Condensed", sans-serif;
 }
 
 /* Task 4 */
@@ -104,4 +109,48 @@ main {
 /* Task 4 */
 #core-concepts li p {
     font-size: 0.9rem;
+}
+
+/* Task 5 */
+#examples {
+    margin: 3rem auto;
+}
+
+/* Task 5 */
+#examples h2 {
+    text-align: left;
+}
+
+/* Task 5 */
+#examples menu {
+    list-style: none;
+    margin: 1rem 0;
+    padding: 0;
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Task 5 */
+#examples menu button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    background-color: transparent;
+    color: #a18aba;
+    font-family: "Roboto Condensed", sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Task 5 */
+#examples menu button:hover {
+    background-color: #1b082f;
+    color: #ebe7ef;
+}
+
+/* Task 5 */
+#examples menu button.active {
+    background-color: #7925d3;
+    color: #ebe7ef;
 }
