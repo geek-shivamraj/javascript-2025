@@ -107,3 +107,51 @@ Currently, two official plugins are available:
 - #### **Task 8:** Highlight the Tab Button clicked by using inbuilt "active" class.
 
 ---
+
+### Step 9: Removing useless `<div>` & using `<Fragment></Fragment>` or `<></>`
+- #### Not Recommended Approach: 
+  - #### We can observe that in our code so far we've used lots of <div> elements unnecessarily, just to wrap the multiple sibling components/elements into a single parent div (mostly for return purpose).
+- #### Recommended Approach:
+    - #### Use Fragment tags or empty tags
+
+- #### Task 9: Remove useless `<div>` & use empty tags `<></>`
+
+---
+
+### Step 10: Component Splitting i.e., Splitting a big component into small components
+- #### To identify good places for extra Components & being able to separate responsibilities & split Big Components into smaller ones is an imp. skill for every React Dev.
+- #### A Single Component that deals with different things typically is not recommended. For e.g., Our <App> Component.
+- #### Right now, our `App.jsx` has below issues:
+  - #### Lots of different responsibilities: Rending the `<CoreConcept>`, Managing the `<TabButton>` & its interactive part etc.
+  - #### Bug: Since we're managing the `selectedTab` state in this component; on `TabButton` click, the `CoreConcept` & `Header` component is also getting re-executed.
+
+- #### Components can be split by Feature or State
+  - #### For e.g., we can split `<App>` component into CoreConcept, Examples with Tab Button Features i.e., `CoreConcepts` & `Examples` component.
+
+- #### Task 10: Level 1 Splitting: Split the `<App>` component & extract `<CoreConcepts>` & `<Examples>` as separate component.
+
+### Forwarded Props
+- #### By using REST Op to get all the forwarded props & using SPREAD Op to pass the props to built-in component in Custom Component.
+- #### Task 11: Level 2 Splitting: Extract a new Component `<Section>` from `<CoreConcepts>` & `<Examples>` component to enforce the common structure (title & content)
+
+---
+
+### Concept 1: Working with Multiple JSX Slots i.e., we can pass JSX as a separate prop
+- #### We observe that a new Component `<Tabs>` can be pulled out from `Examples.jsx` to enforce the common structure (menu with multiple TabButton & content)
+
+### Concept 2: Setting the Component Type Dynamically
+- #### We can set the Component Type Dynamically in React via props
+- #### For e.g., In the `<Tabs>` component, we've wrapped our buttons with `<menu>` but we want to make this `<Tabs>` component a bit more flexible. 
+- #### Since this `<Tabs>` component might be reused in different parts of our application, we might use different wrapper element around buttons in different places in our application.
+- #### There are 2 ways to set the Component Type Dynamically
+  - #### Way 1: Get rid of `<menu>` here & let the `<Tabs>` component use case to define the wrapper element or component.
+  - #### Way 2: [Recommended] Get the wrapper element dynamically from `<Tabs>` component use case via additional Props i.e., buttonContainer or buttonWrapper
+    - #### Way 1: Setting up a const/variable & assign the prop to it.
+    - #### Way 2: [Recommended] Use Capitalize prop name in Custom Component.
+
+### Concept 3: Setting Default prop value to Component Type
+- #### To make <Tabs> component highly reusable & configurable. there are high chances that in most cases "menu" element will be used as wrapper so it would be better if we use "menu" as default ButtonContainer prop
+
+- #### Task 12: Using above 3 concepts, create a new component "Tabs" with extra JSX slot for TabButtons, children prop for setting tab content & ButtonsContainer to set the Wrapper Component Type dynamically.
+
+---
