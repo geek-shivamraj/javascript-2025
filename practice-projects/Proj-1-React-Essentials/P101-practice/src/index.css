@@ -154,3 +154,21 @@ main h2 {
     background-color: #7925d3;
     color: #ebe7ef;
 }
+
+/* Task 7 */
+#tab-content {
+    padding: 1rem;
+    background-color: #2f1d43;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border-radius: 0.5rem;
+}
+
+/* Task 7 */
+#tab-content h3 {
+    margin: 0;
+}
+
+/* Task 7 */
+#tab-content code {
+    font-size: 1rem;
+}
