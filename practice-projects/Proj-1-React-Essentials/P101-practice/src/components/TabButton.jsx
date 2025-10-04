@@ -1,9 +1,11 @@
 
 // Task 5: Add a new component "TabButton" with children prop
-export default function TabButton({children}) {
+// Task 8: Highlight the tab button via isSelected prop
+export default function TabButton({children, isSelected, onSelect}) {
+
     return (
         <li>
-            <button>{children}</button>
+            <button className={isSelected ? 'active' : undefined} onClick={onSelect}>{children}</button>
         </li>
     );
 }
