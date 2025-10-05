@@ -2,7 +2,7 @@
 // Task 2: Create a component player with name, symbol
 import {useState} from "react";
 
-export default function Player({initialName, symbol}) {
+export default function Player({initialName, symbol, isActive}) {
 
     // Task 3:  Add `input` on `edit` click
     const [isEditing, setIsEditing] = useState(false);
@@ -26,7 +26,8 @@ export default function Player({initialName, symbol}) {
     }
 
     return (
-        <li>
+        // Task 7: Highlight the active player
+        <li className={isActive ? "active" : undefined}>
             <span className="player">
                 {/* Task 3: Add `input` on `edit` click */}
                 {editablePlayerName}

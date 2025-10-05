@@ -7,11 +7,11 @@ Currently, two official plugins are available:
 
 ![image1.png](00-target-project/image1.png)
 
-### Step 1: Not All Content must go into Components
+### Concept 1: Not All Content must go into Components
 - #### While working with React, we easily forget that we can add elements in index.html & we don't have to put everything into the Components.
 - #### Ofc most of our web app's markup, logic will be going to Components but if we've some static markups like headers etc. that doesn't depend on any data or state, we can put them in index.html file.
 
-### Step 2: public folder files
+### Concept 2: public folder files
 - #### By default, the files (img etc.) in public folder, will always be available to our website visitors & can easily reference those files inside our markup (no matter in component or index.html) by simply specifying the file name we want to use.
 - #### No need to build the path for public folder files.
 
@@ -29,7 +29,9 @@ Currently, two official plugins are available:
 
 #### Task 3: Add `input` on `edit` click & style it.
 
-### Two-way Binding
+---
+
+### Concept 3: Two-way Binding
 - #### Listening to a change on the input & then feeding that updated value back into the input (via "value" prop) is called 2-way-binding.
 
 #### Task 4: Utilizing 2-way binding, update the playerName via input event handler prop `onChange`
@@ -39,6 +41,30 @@ Currently, two official plugins are available:
 ---
 
 ![image2.png](00-target-project/image2.png)
+
+### Concept 4: Rendering multi-dimensional list
+
+#### Task 5: Create a `GameBoard` component with a 2D Gameboard array with all values as null & style the Gameboard to render on UI.
+
+---
+
+### Concept 5: Updating Object/Array State Immutably
+- ####  If our state is an object or Array, we should update the state in an immutable way i.e., we create a copy of the old state & then just change the copy instead of the existing object or array.
+
+#### Task 6: On each Gameboard square click, set each square to display either 'X' or 'O', assuming first activePlayer is 'X'.
+
+---
+
+### Concept 6: Lifting State up
+- #### Instead of managing which player is currently active in the GameBoard or Player component, we should manage the state in the closest ancestor component that has access to both components.
+
+#### Task 7: Highlight the active Player & since `Player` component is available in `App` component, we need to lift `activePlayer` state to `App` component. Lift it & assume first activePlayer is 'X', 
+
+---
+
+#### Task 8: Use the available `winning-combination.js` & add the game logic for Winner & draw in `GameBoard`. Also create a new component `GameOver` as overlay which will be displayed in case we will have a winner or draw.
+
+---
 
 ![image3.png](00-target-project/image3.png)
 
