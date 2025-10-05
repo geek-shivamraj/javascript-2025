@@ -69,3 +69,31 @@ Currently, two official plugins are available:
 ![image3.png](00-target-project/image3.png)
 
 ![image4.png](00-target-project/image4.png)
+
+### Concept 7: Disabling Gameboard square conditionally
+- #### Based on whether the button is already selected by a player or not.
+
+#### Task 9: Disable the Gameboard Square if it's already selected by either player.
+
+---
+
+### Concept 8: Avoid intersecting States and Prefer Computed values & Avoid unnecessary state management.
+- #### We should avoid using one state into another state in the same component.
+- #### For e.g., setActivePlayer & setTurns, as setTurns requires active player too.
+
+#### Task 10: 
+- #### Now in order to add `Log` component, we need an ordered list of turns with row & col with player symbol. Use `turns` state to derive `GameBoard` state & remove `GameBoard` state
+- #### To reset/remove `Gameover` overlay, we need to set `turns` state back to initial one & then we wll face problem that `Gameover` screen won't be removed becoz there is no state in `GameBoard` that will enforce re-render.
+- #### Move the `Gameover` overlay to `App` component. Then move `winning & draw logic & the gameboard` to `App` component & derive each.
+
+---
+
+### Concept 9: Reduce State Management & Identifying unnecessary state
+
+#### Task 11: Remove `activePlayer` state & derive it from `turns` state.
+
+---
+
+#### Task 12: Instead of showing `player symbol`, display `winner player name`
+
+---
