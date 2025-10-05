@@ -5,13 +5,11 @@ import Log from "./components/Log.jsx";
 import GameOver from "./components/GameOver.jsx";
 import {WINNING_COMBINATIONS} from "./data/winning-combinations.js";
 
-// Task 11
 const PLAYERS = {
     X: 'Player 1',
     O: 'Player 2'
 };
 
-// Task 5: Create a 2D GameBoard
 const INITIAL_GAME_BOARD = [
     [null, null, null],
     [null, null, null],
@@ -28,7 +26,6 @@ const deriveActivePlayer = (turns) => {
 
 const deriveGameBoard = (turns) => {
     let gameBoard = [...INITIAL_GAME_BOARD.map((array) => [...array])];
-
     for (const turn of turns) {
         const {square, player} = turn;
         const {row, col} = square;
@@ -38,7 +35,6 @@ const deriveGameBoard = (turns) => {
     return gameBoard;
 }
 
-// Task 8: Check for winner
 function checkForWinner(gameBoard, players) {
     let winner;
     for (const combination of WINNING_COMBINATIONS) {
@@ -61,21 +57,10 @@ function checkForWinner(gameBoard, players) {
     return winner;
 }
 
-// Task 8: Check for Draw
-// function checkForDraw(gameBoard) {
-//     return gameBoard.every(row => row.every(cell => cell !== null));
-// }
 
 export default function App() {
 
-    // Task 6: Lifting the active player state up from GameBoard component.
-    // Task 7: Get active player state to highlight the active player
-    // const [activePlayer, setActivePlayer] = useState('X');
-
-    // Task 11
     const [players, setPlayers] = useState(PLAYERS);
-
-    // Task 10
     const [turns, setTurns] = useState([])
 
     const activePlayer = deriveActivePlayer(turns);
@@ -84,7 +69,6 @@ export default function App() {
     const draw = turns.length === 9 && !winner;
 
     const handleSelectSquare = (rowIndex, colIndex) => {
-        // setActivePlayer(currentActivePlayer => currentActivePlayer === 'X' ? 'O' : 'X');
         setTurns((prevTurns) => {
             const currentPlayer = deriveActivePlayer(prevTurns);
             return [
@@ -95,32 +79,31 @@ export default function App() {
     }
 
     const handleRestart = () => {
-        setTurns( []);
+        setTurns([]);
     }
 
-    // Task 11
     const handlePlayerNameChange = (symbol, newName) => {
         setPlayers(prevPlayer => {
-           return {
-               ...prevPlayer,
-               [symbol]: newName
-           }
+            return {
+                ...prevPlayer,
+                [symbol]: newName
+            }
         });
     }
 
     return (
         <main>
             <div id="game-container">
-                {/* Task 7: Highlight the active player based on isActive prop */}
                 <ol id="players" className="highlight-player">
-                    <Player initialName={PLAYERS.X} symbol="X" isActive={activePlayer === 'X'} onChangeName={handlePlayerNameChange}/>
-                    <Player initialName={PLAYERS.O} symbol="O" isActive={activePlayer === 'O'} onChangeName={handlePlayerNameChange}/>
+                    <Player initialName={PLAYERS.X} symbol="X" isActive={activePlayer === 'X'}
+                            onChangeName={handlePlayerNameChange}/>
+                    <Player initialName={PLAYERS.O} symbol="O" isActive={activePlayer === 'O'}
+                            onChangeName={handlePlayerNameChange}/>
                 </ol>
-                {/* Task 8: GameOver overlay display in case we've winner or draw */}
                 {(winner || draw) && <GameOver winner={winner} onRestart={handleRestart}/>}
-                <GameBoard gameBoard={gameBoard} onSelectSquare={handleSelectSquare} />
+                <GameBoard gameBoard={gameBoard} onSelectSquare={handleSelectSquare}/>
             </div>
-            <Log turns={turns} />
+            <Log turns={turns}/>
         </main>
     )
 }
