@@ -1,4 +1,4 @@
-import {useRef, useState, useEffect} from 'react';
+import {useRef, useState, useEffect, useCallback} from 'react';
 
 import Places from './components/Places.jsx';
 import {AVAILABLE_PLACES} from './data.js';
@@ -7,37 +7,18 @@ import DeleteConfirmation from './components/DeleteConfirmation.jsx';
 import logoImg from './assets/logo.png';
 import {sortPlacesByDistance} from "./loc.js";
 
-/**
- *  Not All Side Effects Need useEffect
- *
- */
-
 const SELECTED_PLACES = 'selectedPlaces';
 // Below 2 lines will run only once.
 const storedIds = JSON.parse(localStorage.getItem(SELECTED_PLACES)) || [];
 const storedPlaces = storedIds.map((id) => AVAILABLE_PLACES.find((place) => place.id === id));
 
 function App() {
-    const modal = useRef();
+
     const selectedPlace = useRef();
+    const [modalIsOpen, setModalIsOpen] = useState(false);
 
     const [availablePlaces, setAvailablePlaces] = useState([]);
-    // Initializing browser stored local places as initial value.
     const [pickedPlaces, setPickedPlaces] = useState(storedPlaces);
-
-    /**
-     * This is redundant usage of useEffect:
-     *  - Becoz below code where we use local storage, runs synchronously unlike navigation code; Here we will get the data instantly.
-     *      and therefore, the App component function doesn't finish its execution cycle before fetching the data is done.
-     *  - For getting the user's location, we've async code i.e., a callback func will be used to perform further logic in the future.
-     *
-     *  - That's why we should remove below way of using "useEffect" & add the code at the starting of our app
-     */
-    // useEffect(() => {
-    //     const storedIds = JSON.parse(localStorage.getItem('storedPlaces')) || [];
-    //     const storedPlaces = storedIds.map((id) => AVAILABLE_PLACES.find((place) => place.id === id));
-    //     setPickedPlaces(storedPlaces);
-    // }, []);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -47,12 +28,12 @@ function App() {
     }, []);
 
     function handleStartRemovePlace(id) {
-        modal.current.open();
+        setModalIsOpen(true);
         selectedPlace.current = id;
     }
 
     function handleStopRemovePlace() {
-        modal.current.close();
+        setModalIsOpen(false);
     }
 
     function handleSelectPlace(id) {
@@ -64,41 +45,33 @@ function App() {
             return [place, ...prevPickedPlaces];
         });
 
-        /** Use Case (1) of Side Effect
-         * - Side Effect Code without useEffect() hook: Adding selected places list to the local storage
-         * - This code is side effect as this feature is not directly related to rending this JSX code.
-         *    - Adding this code here, so that the local storage will be updated with each state change.
-         *
-         * - We're not using useEffect() hook here. Why? becoz
-         *  1. We're not allowed to use hook inside a function.
-         *  2. Also, we don't need useEffect hook here as there is nothing wrong with below functionality & it doesn't create infinite loop.
-         *      - As this code only executes when this handleSelectPlaces func is called & not on the App component func re-execution.
-         *      - Even if we're updating any state in below code, this will also not create an infinite loop.
-         *
-         * [] is the fallback.
-        */
         const storedIds = JSON.parse(localStorage.getItem(SELECTED_PLACES)) || [];
         if(storedIds.indexOf(id) === -1) {
             localStorage.setItem(SELECTED_PLACES, JSON.stringify([id, ...storedIds]));
         }
     }
 
-    function handleRemovePlace() {
+    /**
+     * By using "useCallback() hook", React makes sure that this inner function is not re-created
+     *  instead, it stores it internally in memory & reuses that stored function whenever the component function re-executes.
+     *  So, no more INFINITE loop for timer.
+     *  - This also provides 2nd arg to add any dependency to re-execute this function.
+     */
+    const handleRemovePlace  = useCallback(function handleRemovePlace() {
         setPickedPlaces((prevPickedPlaces) =>
             prevPickedPlaces.filter((place) => place.id !== selectedPlace.current)
         );
-        modal.current.close();
+        // Commenting this will cause infinite loop for timer if not wrapped with useCallback() hook.
+        setModalIsOpen(false);
 
-        /** Use Case of Side Effect without useEffect() hook:
-         *   - Updating the local storage with removed ids.
-         */
         const storedIds = JSON.parse(localStorage.getItem(SELECTED_PLACES)) || [];
         localStorage.setItem(SELECTED_PLACES, JSON.stringify(storedIds.filter((id) => id !== selectedPlace.current)));
-    }
+    }, []);
+
 
     return (
         <>
-            <Modal ref={modal}>
+            <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
                 <DeleteConfirmation
                     onCancel={handleStopRemovePlace}
                     onConfirm={handleRemovePlace}
