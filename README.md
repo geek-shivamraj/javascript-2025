@@ -6,6 +6,7 @@
 
 | **Command**                               | **Description**                                             | **Category**   |
 |-------------------------------------------|-------------------------------------------------------------|----------------|
+| `node app.js`                             | **Runs node js backend**                                    | Run            |
 | `npx npm-check-updates -u && npm install` | **Updates all the packages in package.json**                | Maintenance    |
 | `npm init`                                | **Create a new `package.json` interactively**               | Initialization |
 | `npm init -y`                             | **Create a default `package.json`**                         | Initialization |
