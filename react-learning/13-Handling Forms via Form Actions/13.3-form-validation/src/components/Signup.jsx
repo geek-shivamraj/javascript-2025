@@ -42,60 +42,61 @@ import {isEmail, isNotEmpty, hasMinLength, isEqualToOtherValue} from "../util/va
  *      but now we've changed those default values to make sure the entered value persists on the form.
  *      - Solution: We've to add custom logic on reset click to clear out the form
  */
-export default function Signup() {
 
-    function signupAction(prevFormState, formData) {
-        const email = formData.get('email');
-        const password = formData.get('password');
-        const confirmPassword = formData.get('confirm-password');
-        const firstName = formData.get('first-name');
-        const lastName = formData.get('last-name');
-        const role = formData.get('role');
-        const terms = formData.get('terms');
-        const acquisitionChannel = formData.getAll('acquisition');
+function signupAction(prevFormState, formData) {
+    const email = formData.get('email');
+    const password = formData.get('password');
+    const confirmPassword = formData.get('confirm-password');
+    const firstName = formData.get('first-name');
+    const lastName = formData.get('last-name');
+    const role = formData.get('role');
+    const terms = formData.get('terms');
+    const acquisitionChannel = formData.getAll('acquisition');
 
-        let errors = [];
+    let errors = [];
 
-        if (!isEmail(email)) {
-            errors.push('Invalid email address.');
-        }
-
-        if (!isNotEmpty(password) || !hasMinLength(password, 6)) {
-            errors.push('You must provide a password with at least 6 characters.');
-        }
-
-        if (!isEqualToOtherValue(password, confirmPassword)) {
-            errors.push('Passwords do not match.');
-        }
-
-        if (!isNotEmpty(firstName) || !isNotEmpty(lastName)) {
-            errors.push('Please provide both your first name and last name.');
-        }
-
-        if (!isNotEmpty(role)) {
-            errors.push('Please select a role.');
-        }
-
-        if (!terms) {
-            errors.push('You must agree to the terms and conditions.');
-        }
-
-        if (acquisitionChannel.length === 0) {
-            errors.push('Please select at least one acquisition channel.');
-        }
-
-        if (errors.length > 0) {
-            // This "enteredValues" key will be used to set default value in case of invalid form submission.
-            return {
-                errors: errors, enteredValues: {
-                    email, password, confirmPassword, firstName, lastName, role, terms, acquisitionChannel
-                }
-            };
-        }
-
-        console.log("Form submitted successfully.");
-        return {errors: null}
+    if (!isEmail(email)) {
+        errors.push('Invalid email address.');
     }
+
+    if (!isNotEmpty(password) || !hasMinLength(password, 6)) {
+        errors.push('You must provide a password with at least 6 characters.');
+    }
+
+    if (!isEqualToOtherValue(password, confirmPassword)) {
+        errors.push('Passwords do not match.');
+    }
+
+    if (!isNotEmpty(firstName) || !isNotEmpty(lastName)) {
+        errors.push('Please provide both your first name and last name.');
+    }
+
+    if (!isNotEmpty(role)) {
+        errors.push('Please select a role.');
+    }
+
+    if (!terms) {
+        errors.push('You must agree to the terms and conditions.');
+    }
+
+    if (acquisitionChannel.length === 0) {
+        errors.push('Please select at least one acquisition channel.');
+    }
+
+    if (errors.length > 0) {
+        // This "enteredValues" key will be used to set default value in case of invalid form submission.
+        return {
+            errors: errors, enteredValues: {
+                email, password, confirmPassword, firstName, lastName, role, terms, acquisitionChannel
+            }
+        };
+    }
+
+    console.log("Form submitted successfully.");
+    return {errors: null}
+}
+
+export default function Signup() {
 
     // Since formState will contain the error messages, we can use it to output error to user.
     const [formState, formAction] = useActionState(signupAction, {errors: null});
