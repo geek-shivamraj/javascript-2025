@@ -26,6 +26,9 @@ import {OpinionsContext} from "../store/opinions-context.jsx";
  *
  *              - This function can be called in any form action of our choice & the args are passed for optimistic update func.
  *
+ *      - For testing this Optimistic update failure scenario, you can sent 500 response from BE
+ *          & we will observe the state value will be rolled back to initial state.
+ *
  */
 export function Opinion({opinion: {id, title, body, userName, votes}}) {
 
