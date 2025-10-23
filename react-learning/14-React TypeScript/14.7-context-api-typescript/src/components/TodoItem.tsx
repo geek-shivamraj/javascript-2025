@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, MouseEventHandler, PropsWithChildren} from "react";
 import classes from "./TodoItem.module.css";
 
 const TodoItem: FC<{todoText: string, onRemoveTodo: () => void}> = (props) => {
@@ -6,4 +6,3 @@ const TodoItem: FC<{todoText: string, onRemoveTodo: () => void}> = (props) => {
 }
 
 export default TodoItem;
-

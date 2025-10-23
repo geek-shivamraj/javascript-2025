@@ -5,7 +5,7 @@ import classes from "./Todos.module.css";
 
 
 /**
- *  bind() is a default method in JS which allows us to pre-configure a function for future execution.
+ *  - bind() is a default method in JS which allows us to pre-configure a function for future execution.
  *      - The bind() method of Function   instances creates a new function that, when called,
  *          calls this function with its this keyword set to the provided value, and a given sequence of arguments
  *          preceding any provided when the new function is called.

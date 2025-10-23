@@ -13,8 +13,7 @@ import {useState} from "react";
  *
  */
 
-function App() {
-
+export default function App() {
 
     const [todos, setTodos] = useState<Todo[]>([]);
 
@@ -37,5 +36,3 @@ function App() {
         </div>
     );
 }
-
-export default App;
