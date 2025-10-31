@@ -11,6 +11,9 @@ import {useDispatch, useSelector} from "react-redux";
  *      - But same can be said about the "counter" state as we're only using the "counter" in this component.
  *          so technically "counter" is also a local state.
  *      - So, for this demo e.g., let's assume both "counter" & "toggle" states are global states.
+ *
+ *  Solution 2: Manage the state via Redux
+ *
  */
 const Counter = () => {
 
