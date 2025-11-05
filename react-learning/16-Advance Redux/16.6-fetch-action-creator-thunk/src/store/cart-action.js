@@ -5,7 +5,6 @@ export const fetchCartData = () => {
     return async dispatch => {
         const fetchData = async () => {
             const response = await fetch('https://fir-app-9f3a1-default-rtdb.firebaseio.com/cart.json')
-
             if (!response.ok) {
                 throw new Error("Could not fetch cart data!");
             }
@@ -36,7 +35,6 @@ export const sendCartData = (cart) => {
             title: 'Sending...',
             message: 'Sending cart data!'
         }));
-
         // Updating the Request payload to skip the "changed" property
         const sendRequest = async () => {
             const response = await fetch('https://fir-app-9f3a1-default-rtdb.firebaseio.com/cart.json', {
@@ -47,7 +45,6 @@ export const sendCartData = (cart) => {
                     totalQuantity: cart.totalQuantity,
                 }),
             });
-
             if (!response.ok) {
                 throw new Error('Sending cart data failed!!');
             }

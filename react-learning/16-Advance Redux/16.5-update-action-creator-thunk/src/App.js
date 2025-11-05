@@ -4,7 +4,6 @@ import Cart from './components/Cart/Cart';
 import Layout from './components/Layout/Layout';
 import Products from './components/Shop/Products';
 import {useEffect} from "react";
-import {uiActions} from "./store/ui-slice";
 import Notification from "./components/UI/Notification";
 import {sendCartData} from "./store/cart-slice";
 
@@ -47,9 +46,7 @@ function App() {
             return;
         }
 
-        /**
-         * Dispatching Custom Action Creator or Thunk
-         */
+        // Dispatching Custom Action Creator or Thunk
         dispatch(sendCartData(cart));
 
     }, [cart, dispatch]);

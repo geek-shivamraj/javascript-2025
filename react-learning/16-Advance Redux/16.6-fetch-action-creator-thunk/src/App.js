@@ -34,7 +34,6 @@ function App() {
 
     // To update the cart data
     useEffect(() => {
-
         if(isInitial) {
             isInitial = false;
             return;
